@@ -1,0 +1,183 @@
+Absolutely! Here's a **full Product Requirements Document (PRD)** for the **"MoodBoard AI – Emotion-Aware Content Recommender"** project, structured to support **AI-assisted development** with clear modularity, use cases, and technical specs.
+
+---
+
+# 🧾 Product Requirements Document (PRD)
+
+## 📌 Project Name
+**MoodBoard AI – Emotion-Aware Content Recommender**
+
+---
+
+## 🎯 Purpose
+To create a personal AI assistant that detects the user's current mood and provides tailored content recommendations—such as songs, quotes, videos, movies, or articles—that align with or uplift that emotional state.
+
+---
+
+## 🎯 Goals
+- Showcase full-stack Python skills in a creative, user-centric AI application.
+- Use multimodal inputs (text, webcam) to detect emotion.
+- Provide intelligent, mood-based recommendations via APIs.
+- Provide a clean UI using Streamlit or Gradio.
+- Store emotional states and recommendations in a personal mood journal.
+
+---
+
+## 🧑‍💻 Target Audience
+- Recruiters and hiring managers
+- AI enthusiasts
+- Portfolio viewers and potential collaborators
+- Users interested in AI-assisted mood tracking and content discovery
+
+---
+
+## 💡 Key Features
+| Feature | Description |
+|--------|-------------|
+| 🎭 Emotion Detection (Text & Webcam) | User can input a sentence or use their webcam; system detects their emotional state |
+| 🎁 Content Recommender | AI recommends songs, quotes, videos, articles, and movies based on mood |
+| 🧠 Personalized Mood Board | A dynamically generated set of recommendations |
+| 📅 Mood Journal | Stores mood + recommendations daily, optionally visualized |
+| 🖥️ Web Interface | Interactive UI with Streamlit/Gradio |
+| ❤️ Feedback Buttons (Bonus) | User can thumbs up/down suggestions to improve accuracy (future ML potential) |
+
+---
+
+## ⚙️ Functional Requirements
+
+### 1. Emotion Detection
+- **Text Input:**
+  - Users enter a sentence describing their mood.
+  - NLP model (TextBlob, spaCy, or Transformers like `distilbert-base-uncased-finetuned-sst-2-english`) detects sentiment and/or emotion.
+- **Webcam Input:**
+  - Users allow webcam access.
+  - Use `OpenCV + FER` (Facial Expression Recognition model) or `MediaPipe + custom classifier` to detect emotion.
+  - Returns one of: `happy`, `sad`, `neutral`, `angry`, `fear`, `surprise`, `disgust`
+
+### 2. Content Recommendation Engine
+Based on the detected emotion, the system:
+- Queries APIs for each category:
+  - Music: Spotify, Last.fm, or curated dataset
+  - Movies: TMDB API
+  - Articles: NewsAPI, Reddit, or Medium RSS
+  - Quotes: ZenQuotes, Quotable.io
+  - Videos: YouTube Data API or curated playlists
+
+Maps emotions to content themes:
+```python
+emotion_map = {
+    "happy": ["motivational", "uplifting", "celebration"],
+    "sad": ["comforting", "healing", "inspiring"],
+    "angry": ["calm", "relaxation", "mindfulness"],
+    "neutral": ["exploratory", "curious", "balanced"],
+    "fear": ["reassuring", "confidence", "bravery"],
+    "surprise": ["fun", "exciting", "unexpected"],
+    "disgust": ["healing", "cleansing", "inspiring"]
+}
+```
+
+### 3. Mood Journal
+- Store each session’s:
+  - Date
+  - Emotion
+  - Text/Webcam input
+  - Recommended items (titles, links)
+- Save in **SQLite** or **JSON**
+- Optional: Line chart of emotional trends over time (matplotlib/plotly)
+
+### 4. UI (Frontend)
+Built with **Streamlit** or **Gradio**:
+- Emotion Input (Text or Webcam)
+- Show detected emotion
+- Display mood board (embed media where possible)
+- Save to journal button
+- Optional: Like/Dislike feedback buttons
+
+---
+
+## 📦 Technical Stack
+
+| Layer | Technology |
+|------|-------------|
+| Backend | Python, FastAPI (optional for backend separation) |
+| NLP | TextBlob, spaCy, HuggingFace Transformers |
+| CV | OpenCV, FER2013 model, or MediaPipe |
+| Data Storage | SQLite or JSON |
+| APIs | TMDB, YouTube, Spotify, NewsAPI, ZenQuotes |
+| UI | Streamlit or Gradio |
+| Optional | Plotly/Matplotlib for visualization |
+
+---
+
+## 📁 Project Structure
+
+```
+moodboard-ai/
+│
+├── app.py                   # Main app logic
+├── emotion/
+│   ├── text_emotion.py      # NLP-based emotion detection
+│   └── webcam_emotion.py    # Webcam-based emotion detection
+├── recommender/
+│   ├── music.py             # Music recommendation
+│   ├── movies.py            # Movie recommendation
+│   ├── quotes.py            # Quote recommendation
+│   └── articles.py          # Article/news recommendation
+├── journal/
+│   ├── journal.py           # Journal handling (save/load/export)
+│   └── visualization.py     # Mood trends over time
+├── ui/
+│   ├── layout.py            # Streamlit or Gradio layout elements
+├── data/
+│   └── mood_journal.json    # Saved data
+├── utils/
+│   └── api_keys.py          # Store API keys securely
+├── requirements.txt
+└── README.md
+```
+
+---
+
+## ✅ Non-Functional Requirements
+- Runs on localhost with minimal setup
+- Fast inference (<1s for text input)
+- Secure storage of API keys
+- Lightweight with minimal dependencies
+- Well-commented and structured codebase
+
+---
+
+## 🧪 Testing Plan
+- Unit test each module (`pytest`)
+- Test:
+  - NLP emotion detection with varied inputs
+  - Webcam emotion detection (if enabled)
+  - API response validity and formatting
+  - Recommendation relevance mapping
+  - Journal saving and retrieval
+- Include `tests/` folder in repo
+
+---
+
+## 🧠 AI-Assisted Development Notes
+Use Copilot/ChatGPT for:
+- Converting prompt-to-code for NLP/CV pipelines
+- Generating API data fetchers with pagination
+- Writing mock tests
+- Refactoring journal handling and UI layout
+- Code commenting and docstrings
+
+---
+
+## 🔚 Deliverables
+- Complete GitHub repo with:
+  - ✅ `README.md` (screenshots, setup, usage)
+  - ✅ Codebase with modular structure
+  - ✅ `requirements.txt`
+  - ✅ `tests/` folder
+  - ✅ Sample output (JSON or screenshots)
+  - ✅ Hosted demo link (if using Streamlit Cloud)
+
+---
+
+Want me to generate the boilerplate code for the folder structure? Or do you want the first module (e.g., text_emotion.py or music.py) written to kickstart development?
