@@ -54,23 +54,6 @@ streamlit run app/app.py
 5. Save your mood and recommendations to your journal
 6. Track your mood patterns over time
 
-## Project Structure
-
-```
-moodboard-ai/
-│
-├── app/
-│   ├── emotion/          # Emotion detection modules
-│   ├── recommender/      # Content recommendation modules
-│   ├── journal/          # Mood journaling functionality
-│   ├── ui/              # UI components
-│   ├── data/            # Data storage
-│   └── utils/           # Utility functions
-├── tests/               # Test files
-├── requirements.txt     # Project dependencies
-└── README.md           # Project documentation
-```
-
 ## Contributing
 
 Feel free to submit issues and enhancement requests!
